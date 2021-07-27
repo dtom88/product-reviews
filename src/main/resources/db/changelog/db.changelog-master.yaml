@@ -1,0 +1,225 @@
+databaseChangeLog:
+  -  preConditions:
+
+  -  changeSet:
+       id:  add product table
+       author:  user
+       changes:
+         -  createTable:
+              tableName:  Product
+              columns:
+                -  column:
+                     name:  id
+                     type:  long
+                     autoIncrement:  true
+                     constraints:
+                       primaryKey:  true
+                       nullable:  false
+                -  column:
+                     name:  title
+                     type:  varchar(100)
+
+  -  changeSet:
+       id:  add review table
+       author:  user
+       changes:
+         - createTable:
+             tableName: Review
+             columns:
+               - column:
+                   name: id
+                   type: long
+                   autoIncrement: true
+                   constraints:
+                     primaryKey: true
+                     constraintName:  pk_product
+                     nullable: false
+               - column:
+                   name: rating
+                   type: int
+               - column:
+                   name: text
+                   type: varchar(1000)
+               - column:
+                   name: active
+                   type: boolean
+               - column:
+                   name: product
+                   type: long
+                   constraints:
+                     foreignKey: true
+                     foreignKeyName: fk_product_review
+                     referencedTableName:  Product
+                     referencedColumnNames:  id
+                     nullable: false
+                     validate:  true
+  - changeSet:
+      id: populate product table
+      author: user
+      changes:
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: title
+                  value: "product_1"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: title
+                  value: "product_2"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: title
+                  value: "product_3"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: title
+                  value: "product_4"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: title
+                  value: "product_5"
+        - insert:
+            tableName: product
+            columns:
+              - column:
+                  name: title
+                  value: "product_6"
+
+  - changeSet:
+      id: populate review table
+      author: user
+      changes:
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: rating
+                  value: 3
+              - column:
+                  name: text
+                  value: "Not cool enough."
+              - column:
+                  name: product
+                  value: 1
+              - column:
+                  name: active
+                  value: true
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: rating
+                  value: 1
+              - column:
+                  name: text
+                  value: "Such an awful experience"
+              - column:
+                  name: product
+                  value: 1
+              - column:
+                  name: active
+                  value: false
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: rating
+                  value: 5
+              - column:
+                  name: text
+                  value: "Amazing quality"
+              - column:
+                  name: product
+                  value: 1
+              - column:
+                  name: active
+                  value: true
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: rating
+                  value: 4
+              - column:
+                  name: text
+                  value: "It's good."
+              - column:
+                  name: product
+                  value: 2
+              - column:
+                  name: active
+                  value: true
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: rating
+                  value: 4
+              - column:
+                  name: text
+                  value: "Nice to have."
+              - column:
+                  name: product
+                  value: 1
+              - column:
+                  name: active
+                  value: true
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: rating
+                  value: 4
+              - column:
+                  name: text
+                  value: "I recommend."
+              - column:
+                  name: product
+                  value: 1
+              - column:
+                  name: active
+                  value: true
+        - insert:
+            tableName: review
+            columns:
+              - column:
+                  name: rating
+                  value: 1
+              - column:
+                  name: text
+                  value: "Never buy again."
+              - column:
+                  name: product
+                  value: 1
+              - column:
+                  name: active
+                  value: true
+              - insert:
+                  tableName: review
+                  columns:
+                    - column:
+                        name: rating
+                        value: 5
+                    - column:
+                        name: text
+                        value: "Had as a gift, nice."
+                    - column:
+                        name: product
+                        value: 1
+                    - column:
+                        name: active
+                        value: true
+
+
+
+
+
